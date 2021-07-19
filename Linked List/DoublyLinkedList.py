@@ -29,6 +29,38 @@ class LinkedList:
         print('None')
         print()
 
+    def delete(self,item):
+        pointer = self.search(item) 
+        if pointer == None:
+            print("1 exe")
+            print("Item is not present")
+            return -1
+        elif pointer.next == None:
+            if self.head == pointer:
+                print("2A exe")
+                self.head = None
+                self.tail = None
+                print("{} deleted".format(item))
+                return item
+            else:
+                print("2B exe")
+                pointer.prev.next = None
+                self.tail = pointer.prev
+                print("{} deleted".format(item))
+                return item
+        elif pointer.prev == None:
+            print("3 exe")
+            self.head = pointer.next
+            self.head.prev = None
+            print("{} deleted".format(item))
+            return item
+        else:
+            print("4 exe")
+            pointer.prev.next = pointer.next
+            pointer.next.prev = pointer.prev
+            print("{} deleted".format(item))
+            return item
+
     def insertAtEnd(self,item):
         newNode = Node(item)
         self.tail.next = newNode
@@ -67,10 +99,10 @@ class LinkedList:
         while temp:
             if temp.data == item:
                 print("{} exist".format(item))
-                return True
+                return temp
             temp = temp.next
         print("Item does not exist")
-        return False
+        return None
 
     def minimum(self):
         min = 99999
@@ -144,3 +176,17 @@ l1.insertAtMiddleAfter(7,6)
 l1.printLinkedList()
 l1.insertAtMiddleBefore(10,0)
 l1.printLinkedList()
+l1.delete(0)
+l1.printLinkedList()
+l1.delete(10)
+l1.printLinkedList()
+l1.delete(6)
+l1.printLinkedList()
+l1.delete(7)
+l1.printLinkedList()
+l1.insertAtEnd(10)
+l1.printLinkedList()
+l1.insertAtStart(0)
+l1.printLinkedList()
+
+
