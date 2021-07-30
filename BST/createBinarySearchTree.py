@@ -120,6 +120,42 @@ class BinarySearchTree:
         while temp.right != None:
             temp = temp.right
         return temp.data
+    
+    def inorderPredeccesor(self, root):
+        if root is None or root.left is None:
+            return
+        temp = root.left
+        while temp.right:
+            temp = temp.right
+        return temp.data
+
+    def inorderSuccessor(self,root):
+        if root is None or root.right is None:
+            temp = root.right
+            while temp.left:
+                temp = temp.left
+            return temp.data
+
+
+
+
+    def delete(self, root, ele):
+        if root is None:
+            return None
+        elif root.data > ele:
+            root.left = self.delete(root.left,ele)
+        elif root.data < ele:
+            root.right = self.delete(root.right,ele)
+        else:
+            if not (root.left or root.right):
+                root = None
+            elif root.left:
+                root.data = self.inorderPredeccesor(root)
+                root.left = self.delete(root.left,ele)
+            else:
+                root.data = self.inorderSuccessor(root)
+                root.right = self.delete(root.right,ele)
+        return root
 
 '''
             10
@@ -137,9 +173,13 @@ if __name__ == '__main__':
     for i in [10, 5, 25, 2, 7, 30]:
         root = b.builtBST(root,i)
     b.inorder(root)
-    search_result = b.search(root, 30)
-    print("Search on 30: Result is -> {}".format('Yes' if search_result==True else 'No'))
-    print("Min element in BST is {}".format(b.findMin(root)))
-    print("Max element in BST is {}".format(b.findMax(root)))
-    b.preorder(root)
-    b.postorder(root)
+    # search_result = b.search(root, 30)
+    # print("Search on 30: Result is -> {}".format('Yes' if search_result==True else 'No'))
+    # print("Min element in BST is {}".format(b.findMin(root)))
+    # print("Max element in BST is {}".format(b.findMax(root)))
+    # b.preorder(root)
+    # b.postorder(root)
+    # predeccessor = b.inorderPredeccesor(root)
+    # print('inorder predeccessor of 10 is {}'.format(predeccessor.data))
+    b.delete(root,5)
+    b.inorder(root)
