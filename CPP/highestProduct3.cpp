@@ -1,3 +1,4 @@
+// https://www.interviewcake.com/question/cpp/highest-product-of-3?course=fc1&section=greedy
 #include <iostream>
 #include <vector>
 
