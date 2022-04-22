@@ -74,10 +74,7 @@ class Solution
         
         // formate a vector containing return result;
         
-        vector<int> res;
-        res.push_back(count);
-        res.push_back(maxProfit);
-        return res;
+        return {count,maxProfit};
     } 
 };
 
