@@ -10,6 +10,7 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
+        // O(N) time, O(N) space
 //         unordered_set <ListNode*> s;
         
 //         while(head){
@@ -21,24 +22,29 @@ public:
 //         }
 //         return NULL;
         
-        ListNode *slow, *fast;
+
+// O(N) time, O(1) space
+        // cycle not possible case;
+        if(!head || !head->next){
+            return NULL;
+        }
+
+        ListNode *slow, *fast, *entry;
         slow=head;
         fast=head;
-        
-        while(slow != NULL && fast!=NULL){
-            
+        entry=head;
+
+         while(fast->next && fast->next->next){
             slow = slow->next;
-            if(fast->next!=NULL){
-                fast = fast->next->next;
-            }
-            else{
-                break;
-            }
-            
-            if(slow == fast){
-                return slow;
-            }
-            
+            fast = fast->next->next;
+            if(fast == slow){
+
+                while(entry!=slow){
+                    entry=entry->next;
+                    slow = slow->next;
+                }
+                return entry;
+            }            
         }
         return NULL;
         
