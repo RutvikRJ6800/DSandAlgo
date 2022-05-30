@@ -60,20 +60,21 @@ using namespace std;
 class MinStack {
 public:
     stack<long long> st;
+    long long mini=INT_MAX;
     MinStack() {
-        long long min=INT_MAX;
+        
     }
     
     void push(int val) {
         if(st.empty()){
-            min = val;
+            mini = val;
             st.push(val);
             return;
         }
-        if(min>val){
-            long long modifiedValue = 2*val*1LL - min;
+        if(mini>val){
+            long long modifiedValue = 2*1LL*val - mini;
             st.push(modifiedValue);
-            min = val;
+            mini = val;
         }
         else{
             st.push(val);
@@ -81,19 +82,17 @@ public:
     }
     
     void pop() {
-        if(st.empty())return -1;
+        if(st.empty())return;
         long long tp = st.top();
-        if(tp<min){
+        if(tp<mini){
 //             top is the curr min value in the stack and we need to delete it
-            long long ret = min;
-            min = 2*tp - min; // set new min as previous min
+            long long ret = mini;
+            mini = 2*mini*1LL - tp; // set new min as previous min
             st.pop();
-            return ret;
         }
         else{
 //             top is not the minimum so without worries just pop it
             st.pop();
-            return tp;
         }
         
     }
@@ -102,8 +101,8 @@ public:
         if(st.empty()) return -1;
         long long tp = st.top();
         
-        if(tp<min){
-            return min; // because tp is the current min in stack
+        if(tp<mini){
+            return mini; // because tp is the current min in stack
         }
         else
             return tp;
@@ -113,7 +112,7 @@ public:
         if(st.empty())
             return -1;
         else
-            return min;
+            return mini;
     }
 };
 
@@ -125,24 +124,3 @@ public:
  * int param_3 = obj->top();
  * int param_4 = obj->getMin();
  */
-
-
-
-/**
- * Your MinStack object will be instantiated and called as such:
- * MinStack* obj = new MinStack();
- * obj->push(val);
- * obj->pop();
- * int param_3 = obj->top();
- * int param_4 = obj->getMin();
- */
-
-int main(){
-
-    MinStack* obj = new MinStack();
-    obj->push(-2);
-    obj->pop();
-    int param_3 = obj->top();
-    int param_4 = obj->getMin();    
-    return 0;
-}
