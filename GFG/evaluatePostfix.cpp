@@ -1,7 +1,7 @@
 // { Driver Code Starts
 // C++ program to evaluate value of a postfix expression
 // https://practice.geeksforgeeks.org/problems/the-celebrity-problem/1#
-// 
+//  
 
 #include <bits/stdc++.h>
 using namespace std;
