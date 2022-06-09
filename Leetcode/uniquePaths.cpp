@@ -22,9 +22,21 @@ public:
     }
     
     int uniquePaths(int m, int n) {
-        int x,y;
-        x=0,y=0;
-        vector<vector<int>> sol(m,vector<int>(n,-1));
-        return rec(x,y,m,n,sol);
+
+        // combinatorics approch-the most optimal one.
+        int N=m+n-2;
+        int r=min(m,n)-1;
+        double res=1;
+        for(int i=1; i<=r; i++){
+            res = res*(N-r+i)/i;
+        }
+    
+        return (int)res;
+
+
+        // int x,y;
+        // x=0,y=0;
+        // vector<vector<int>> sol(m,vector<int>(n,-1));
+        // return rec(x,y,m,n,sol);
     }
 };
