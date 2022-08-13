@@ -1,0 +1,79 @@
+cde force 1
+
+int main(){
+
+    int t;
+    cin>>t;
+    while(t--){
+        int s1,s2,k;
+        cin>>s1>>s2>>k;
+        string st1,st2,ans;
+        cin>>st1>>st2;
+        sort(st1.begin(), st1.end());
+        sort(st2.begin(), st2.end());
+
+        int i,j,steps;
+        i=0;
+        j=0;
+        steps=k;
+        bool prev; // means s1 chnged
+        bool firsttime = true;
+
+        while(s1!=0 && s2!=0){
+            if(steps==0){
+                // change string
+                if(prev){
+                    // prev 2 string used;
+                    ans.push_back(st1[i]);
+                    i++;
+                    s1--;
+                    prev=false;
+                }
+                else{
+                    ans.push_back(st2[j]);
+                    j++;
+                    s2--;
+                    prev=true;
+                }
+                steps=k-1;;
+                continue;
+            }
+            if(st1[i]<st2[j]){
+                ans.push_back(st1[i]);
+                i++;
+                s1--;
+                if(firsttime){
+                    firsttime=false;
+                    prev=false;
+                    // continue;
+                }
+                if(!prev){
+                    steps--;
+                }
+                else{
+                    steps=k;
+                    prev = false;
+                }
+            }
+            else{
+                ans.push_back(st2[j]);
+                j++;
+                s2--;
+                // prev=true;
+                if(firsttime){
+                    firsttime=false;
+                    prev=true;
+                    // continue;
+                }
+                if(prev){
+                    steps--;
+                }
+                else{
+                    steps=k;
+                    prev = true;
+                }
+            }
+        }
+        cout<<ans<<endl;
+    }
+}
