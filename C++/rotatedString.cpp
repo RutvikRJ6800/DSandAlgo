@@ -42,7 +42,7 @@ bool rotatedString(string s, string goal){
     //     i++;
     // }
 
-    // return false;
+    return false;
 
 
     // substring approach
@@ -66,7 +66,7 @@ bool rotatedString(string s, string goal){
 
 int main(){
 
-    // cout<<rotatedString("abcde","cdeab");
-    cout<<rotatedString("abcde","cdebb");
+    cout<<rotatedString("abcde","cdeab");
+    // cout<<rotatedString("abcde","cdebb");
     return 0;
 }

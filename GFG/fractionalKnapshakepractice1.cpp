@@ -31,16 +31,16 @@ class Solution
         // Your code here
         sort(arr,arr+n,cmp);
 
-        int i=0,,pro=0;
+        int i=0,profit=0;
         while(W>0 && arr[i].weight<=W){
-        		pro+=arr[i].value;
+        		profit += arr[i].value;
         		W-=arr[i].weight;
         }
         if(W>0){
         	profit += (arr[i].value/arr[i].weight)*W; 
         }
 
-        return profit
+        return profit;
     }
         
 };
